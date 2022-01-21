@@ -1,0 +1,22 @@
+#! /usr/bin/env ruby
+# because rubygems shims assume a gem's executables are Ruby
+
+require "shellwords"
+
+os = Gem::Platform.local.os
+
+exe_path = 
+  case os
+  when "darwin"  then File.join(__dir__, "darwin/sass")
+  when "linux"   then File.join(__dir__, "linux/sass")
+  when "mingw32" then File.join(__dir__, "mingw32/sass.bat")
+  else
+    STDERR.puts(<<~ERRMSG)
+      ERROR: dartsass-rails does not support the #{os} operating system
+    ERRMSG
+    exit 1
+  end
+
+command = Shellwords.join([ exe_path, ARGV ].flatten)
+puts "+ #{command}"
+exec(command)

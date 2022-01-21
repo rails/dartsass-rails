@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+VERSION=$1
+
+if [ -z "$VERSION" ]; then
+  echo "Usage: $0 <version>"
+  exit 1
+fi
+
+printf "module Dartsass\n  VERSION = \"$VERSION\"\nend\n" > ./lib/dartsass/version.rb
+bundle
+git add Gemfile.lock lib/dartsass/version.rb
+git commit -m "Bump version for $VERSION"
+git push
+git tag v$VERSION
+git push --tags
+gem build dartsass-rails.gemspec
+gem push "dartsass-rails-$VERSION.gem" --host https://rubygems.org

@@ -1,14 +1,17 @@
-DARTSASS_COMPILE_COMMAND = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass #{Rails.root.join("app/assets/stylesheets/application.scss")} #{Rails.root.join("app/assets/builds/application.scss")}"
+def dartsass_compile_command
+  stylesheet_map = Rails.application.config.dartsass.stylesheets.map{|k, v| "#{Rails.root.join('app/assets/stylesheets', k)}:#{Rails.root.join('app/assets/builds', v)}"}.join(' ')
+  "#{Pathname.new(__dir__).to_s}/../../exe/dartsass #{stylesheet_map}"
+end
 
 namespace :dartsass do
   desc "Build your Dart Sass CSS"
-  task :build do
-    system DARTSASS_COMPILE_COMMAND
+  task build: :environment do
+    system dartsass_compile_command
   end
 
   desc "Watch and build your Dart Sass CSS on file changes"
-  task :watch do
-    system "#{DARTSASS_COMPILE_COMMAND} -w"
+  task watch: :environment do
+    system "#{dartsass_compile_command} -w"
   end
 end
 

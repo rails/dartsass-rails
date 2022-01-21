@@ -22,6 +22,11 @@ When you're developing your application, you want to run Dart Sass in watch mode
 The `dartsass:build` is automatically attached to `assets:precompile`, so before the asset pipeline digests the files, the Dart Sass output will be generated.
 
 
+## Version
+
+Dart Sass 1.49.0
+
+
 ## License
 
 Dart Sass for Rails is released under the [MIT License](https://opensource.org/licenses/MIT).

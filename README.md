@@ -21,7 +21,7 @@ When you're developing your application, you want to run Dart Sass in watch mode
 
 The `dartsass:build` is automatically attached to `assets:precompile`, so before the asset pipeline digests the files, the Dart Sass output will be generated.
 
-## Configuring Stylesheets
+## Configuring builds
 
 By default, only `app/assets/stylesheets/application.scss` will be built. If you'd like to change the path of this stylesheet, add additional entry points, or customize the name of the built file, use the `Rails.application.config.dartsass.builds` configuration hash.
 
@@ -29,8 +29,8 @@ By default, only `app/assets/stylesheets/application.scss` will be built. If you
 ```
 # config/initializers/dartsass.rb
 Rails.application.config.dartsass.builds = {
-  'app/index.sass'  => 'app.css',
-  'site.scss'       => 'site.css'
+  "app/index.sass"  => "app.css",
+  "site.scss"       => "site.css"
 }
 ```
 

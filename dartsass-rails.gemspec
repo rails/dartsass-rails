@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
     "rubygems_mfa_required" => "true"
   }
 
-  spec.files = Dir["lib/**/*", "MIT-LICENSE", "LICENSE-DEPENDENCIES", "Rakefile", "README.md"]
+  spec.files = Dir["{lib,exe}/**/*", "MIT-LICENSE", "LICENSE-DEPENDENCIES", "Rakefile", "README.md"]
   spec.bindir = "exe"
   spec.executables << "dartsass"
 

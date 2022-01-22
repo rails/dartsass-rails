@@ -1,7 +1,7 @@
 EXEC_PATH = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass"
 
 def dartsass_build_mapping
-  Rails.application.config.dartsass.stylesheets.map { |input, output| 
+  Rails.application.config.dartsass.builds.map { |input, output| 
     "#{Rails.root.join("app/assets/stylesheets", input)}:#{Rails.root.join("app/assets/builds", output)}"
   }.join(" ")
 end

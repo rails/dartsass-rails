@@ -23,12 +23,12 @@ The `dartsass:build` is automatically attached to `assets:precompile`, so before
 
 ## Configuring Stylesheets
 
-By default, only `app/assets/stylesheets/application.scss` will be built. If you'd like to change the path of this stylesheet, add additional entry points, or customize the name of the built file, use the `Rails.application.config.dartsass.stylesheets` configuration hash.
+By default, only `app/assets/stylesheets/application.scss` will be built. If you'd like to change the path of this stylesheet, add additional entry points, or customize the name of the built file, use the `Rails.application.config.dartsass.builds` configuration hash.
 
 
 ```
 # config/initializers/dartsass.rb
-Rails.application.config.dartsass.stylesheets = {
+Rails.application.config.dartsass.builds = {
   'app/index.sass'  => 'app.css',
   'site.scss'       => 'site.css'
 }

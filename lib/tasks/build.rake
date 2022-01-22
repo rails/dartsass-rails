@@ -1,6 +1,13 @@
+EXEC_PATH = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass"
+
+def dartsass_build_mapping
+  Rails.application.config.dartsass.stylesheets.map { |input, output| 
+    "#{Rails.root.join("app/assets/stylesheets", input)}:#{Rails.root.join("app/assets/builds", output)}"
+  }.join(" ")
+end
+
 def dartsass_compile_command
-  stylesheet_map = Rails.application.config.dartsass.stylesheets.map{|k, v| "#{Rails.root.join('app/assets/stylesheets', k)}:#{Rails.root.join('app/assets/builds', v)}"}.join(' ')
-  "#{Pathname.new(__dir__).to_s}/../../exe/dartsass #{stylesheet_map}"
+   "#{EXEC_PATH} #{dartsass_build_mapping}"
 end
 
 namespace :dartsass do

@@ -1,13 +1,19 @@
-EXEC_PATH = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass"
+EXEC_PATH      = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass"
+CSS_LOAD_PATH  = Rails.root.join("app/assets/stylesheets")
+CSS_BUILD_PATH = Rails.root.join("app/assets/builds")
 
 def dartsass_build_mapping
   Rails.application.config.dartsass.builds.map { |input, output| 
-    "#{Rails.root.join("app/assets/stylesheets", input)}:#{Rails.root.join("app/assets/builds", output)}"
+    "#{CSS_LOAD_PATH.join(input)}:#{CSS_BUILD_PATH.join(output)}"
   }.join(" ")
 end
 
+def dartsass_load_path
+  "--load-path #{CSS_LOAD_PATH}"
+end
+
 def dartsass_compile_command
-   "#{EXEC_PATH} #{dartsass_build_mapping}"
+   "#{EXEC_PATH} #{dartsass_load_path} #{dartsass_build_mapping}"
 end
 
 namespace :dartsass do

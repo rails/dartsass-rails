@@ -3,16 +3,18 @@
 
 require "shellwords"
 
-os = Gem::Platform.local.os
+platform_info = Gem::Platform.local
+platform_string = "#{platform_info.cpu}-#{platform_info.os}"
 
 exe_path = 
-  case os
-  when "darwin"  then File.join(__dir__, "darwin/sass")
-  when "linux"   then File.join(__dir__, "linux/sass")
-  when "mingw32" then File.join(__dir__, "mingw32/sass.bat")
+  case platform_string
+  when "aarch64-linux" then File.join(__dir__, "aarch64-linux/sass")
+  when /darwin\z/  then File.join(__dir__, "darwin/sass")
+  when /linux\z/   then File.join(__dir__, "linux/sass")
+  when /mingw32\z/ then File.join(__dir__, "mingw32/sass.bat")
   else
     STDERR.puts(<<~ERRMSG)
-      ERROR: dartsass-rails does not support the #{os} operating system
+      ERROR: dartsass-rails does not support the #{platform_string} platform
     ERRMSG
     exit 1
   end

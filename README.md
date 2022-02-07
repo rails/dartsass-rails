@@ -34,7 +34,7 @@ Rails.application.config.dartsass.builds = {
 }
 ```
 
-The has key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
+The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
 
 
 ## Version

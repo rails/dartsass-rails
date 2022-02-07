@@ -8,12 +8,12 @@ def dartsass_build_mapping
   }.join(" ")
 end
 
-def dartsass_load_path
-  "--load-path #{CSS_LOAD_PATH}"
+def dartsass_build_options
+  "--load-path #{CSS_LOAD_PATH} --style=compressed"
 end
 
 def dartsass_compile_command
-   "#{EXEC_PATH} #{dartsass_load_path} #{dartsass_build_mapping}"
+   "#{EXEC_PATH} #{dartsass_build_options} #{dartsass_build_mapping}"
 end
 
 namespace :dartsass do

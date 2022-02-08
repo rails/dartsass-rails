@@ -36,6 +36,12 @@ Rails.application.config.dartsass.builds = {
 
 The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
 
+By default, only files under `app/assets/stylesheets` will be watched. If you'd like to add extra directories, use the `Rails.application.config.dartsass.extra_load_paths` configuration array.
+
+```
+# config/initializers/dartsass.rb
+Rails.application.config.dartsass.extra_load_paths = ["app/components"]
+```
 
 ## Version
 

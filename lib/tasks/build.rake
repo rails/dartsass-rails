@@ -9,7 +9,7 @@ def dartsass_build_mapping
 end
 
 def dartsass_build_options
-  "--load-path #{CSS_LOAD_PATH} --style=compressed"
+  "--load-path #{CSS_LOAD_PATH} --style=compressed --no-source-map"
 end
 
 def dartsass_compile_command

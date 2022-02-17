@@ -1,11 +1,15 @@
 EXEC_PATH      = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass"
 CSS_LOAD_PATH  = Rails.root.join("app/assets/stylesheets")
 CSS_BUILD_PATH = Rails.root.join("app/assets/builds")
+CSS_LOAD_FROM_RAILS_ROOT_PATH = Rails.root
 
 def dartsass_build_mapping
-  Rails.application.config.dartsass.builds.map { |input, output|
-    "#{CSS_LOAD_PATH.join(input)}:#{CSS_BUILD_PATH.join(output)}"
-  }.join(" ")
+  builds_map = Rails.application.config.dartsass.builds.map { |input, output|
+    input_file_path = "#{CSS_LOAD_PATH.join(input)}"
+    input_file_path = "#{CSS_LOAD_FROM_RAILS_ROOT_PATH.join(input)}" unless File.exist?(input_file_path)
+    "#{input_file_path}:#{CSS_BUILD_PATH.join(output)}"
+  }
+  builds_map.uniq.join(" ")
 end
 
 def dartsass_build_options

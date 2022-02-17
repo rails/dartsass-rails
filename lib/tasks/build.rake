@@ -9,7 +9,22 @@ def dartsass_build_mapping
 end
 
 def dartsass_build_options
-  "--load-path #{CSS_LOAD_PATH} --style=compressed --no-source-map"
+  dartsass_build_load_paths.concat(" --style=compressed --no-source-map")
+end
+
+def dartsass_build_load_paths
+  default_stylesheet_paths.map do |path|
+    "--load-path #{path.to_s}"
+  end.uniq.join(" ")
+end
+
+def default_stylesheet_paths
+  dartsass_paths = Rails.application.config.dartsass.paths
+  return dartsass_paths if dartsass_paths.present?
+
+  Rails.application.config.assets[:paths].select do |path|
+    path.to_s.match?(/stylesheets/)
+  end
 end
 
 def dartsass_compile_command

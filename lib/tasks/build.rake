@@ -9,17 +9,15 @@ def dartsass_build_mapping
 end
 
 def dartsass_build_options
-  "#{load_paths} --style=compressed --no-source-map"
+  "--style=compressed --no-source-map"
 end
 
-def load_paths
-  [CSS_LOAD_PATH].concat(Rails.application.config.assets.paths)
-                 .map { |path| "--load-path #{path}" }
-                 .join(" ")
+def dartsass_load_paths
+  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).map { |path| "--load-path #{path}" }.join(" ")
 end
 
 def dartsass_compile_command
-   "#{EXEC_PATH} #{dartsass_build_options} #{dartsass_build_mapping}"
+   "#{EXEC_PATH} #{dartsass_build_options} #{dartsass_load_paths} #{dartsass_build_mapping}"
 end
 
 namespace :dartsass do

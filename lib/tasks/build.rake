@@ -3,17 +3,21 @@ CSS_LOAD_PATH  = Rails.root.join("app/assets/stylesheets")
 CSS_BUILD_PATH = Rails.root.join("app/assets/builds")
 
 def dartsass_build_mapping
-  Rails.application.config.dartsass.builds.map { |input, output| 
+  Rails.application.config.dartsass.builds.map { |input, output|
     "#{CSS_LOAD_PATH.join(input)}:#{CSS_BUILD_PATH.join(output)}"
   }.join(" ")
 end
 
 def dartsass_build_options
-  "--load-path #{CSS_LOAD_PATH} --style=compressed --no-source-map"
+  "--style=compressed --no-source-map"
+end
+
+def dartsass_load_paths
+  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).map { |path| "--load-path #{path}" }.join(" ")
 end
 
 def dartsass_compile_command
-   "#{EXEC_PATH} #{dartsass_build_options} #{dartsass_build_mapping}"
+   "#{EXEC_PATH} #{dartsass_build_options} #{dartsass_load_paths} #{dartsass_build_mapping}"
 end
 
 namespace :dartsass do

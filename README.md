@@ -29,12 +29,16 @@ By default, only `app/assets/stylesheets/application.scss` will be built. If you
 ```
 # config/initializers/dartsass.rb
 Rails.application.config.dartsass.builds = {
-  "app/index.sass"  => "app.css",
-  "site.scss"       => "site.css"
+  "index.sass" => "app.css",
+  "site.scss"  => "site.css"
+  "engines/travel/app/assets/stylesheets/travel/main.scss" => "travel/main.css",
+  "lib/stylesheets/common.css" => "common.css",
 }
 ```
 
 The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
+
+If file does not exist in `app/assets/stylesheets/` directory - relative path will be changed to `Rails.root`.
 
 ## Importing assets from gems
 `dartsass:build` includes application [assets paths](https://guides.rubyonrails.org/asset_pipeline.html#search-paths) as Sass [load paths](https://sass-lang.com/documentation/at-rules/use#load-paths). Assuming the gem has made assets visible to the Rails application, no additional configuration is required to use them.

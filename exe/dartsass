@@ -13,6 +13,17 @@ exe_path =
   when /darwin\z/  then File.join(__dir__, "darwin/sass")
   when /linux\z/   then File.join(__dir__, "linux/sass")
   when /mingw32\z/ then File.join(__dir__, "mingw32/sass.bat")
+  when /openbsd\z/
+    sass_port = "/usr/local/bin/sass"
+
+    if File.exists?(sass_port)
+      sass_port
+    else
+      STDERR.puts(<<~ERRMSG)
+        ERROR: Please install the OpenBSD Sass port and try again: `pkg_add sass`
+      ERRMSG
+      exit 1
+    end
   else
     STDERR.puts(<<~ERRMSG)
       ERROR: dartsass-rails does not support the #{platform_string} platform

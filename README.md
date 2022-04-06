@@ -26,7 +26,7 @@ The `dartsass:build` is automatically attached to `assets:precompile`, so before
 By default, only `app/assets/stylesheets/application.scss` will be built. If you'd like to change the path of this stylesheet, add additional entry points, or customize the name of the built file, use the `Rails.application.config.dartsass.builds` configuration hash.
 
 
-```
+```ruby
 # config/initializers/dartsass.rb
 Rails.application.config.dartsass.builds = {
   "app/index.sass"  => "app.css",
@@ -35,6 +35,15 @@ Rails.application.config.dartsass.builds = {
 ```
 
 The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
+
+## Configuring build options
+
+By default, sass is invoked with `--style=compressed --no-source-map`. You can adjust these options by overwriting `Rails.application.config.dartsass.build_options`.
+
+```ruby
+# config/initializers/dartsass.rb
+Rails.application.config.dartsass.build_options << " --quiet-deps"
+```
 
 ## Importing assets from gems
 `dartsass:build` includes application [assets paths](https://guides.rubyonrails.org/asset_pipeline.html#search-paths) as Sass [load paths](https://sass-lang.com/documentation/at-rules/use#load-paths). Assuming the gem has made assets visible to the Rails application, no additional configuration is required to use them.

@@ -9,7 +9,7 @@ def dartsass_build_mapping
 end
 
 def dartsass_build_options
-  "--style=compressed --no-source-map"
+  Rails.application.config.dartsass.build_options
 end
 
 def dartsass_load_paths

@@ -16,7 +16,6 @@ When you're developing your application, you want to run Dart Sass in watch mode
 1. Run `./bin/bundle add dartsass-rails`
 2. Run `./bin/rails dartsass:install`
 
-
 ## Building in production
 
 The `dartsass:build` is automatically attached to `assets:precompile`, so before the asset pipeline digests the files, the Dart Sass output will be generated.
@@ -39,6 +38,30 @@ The hash key is the relative path to a Sass file in `app/assets/stylesheets/` an
 ## Importing assets from gems
 `dartsass:build` includes application [assets paths](https://guides.rubyonrails.org/asset_pipeline.html#search-paths) as Sass [load paths](https://sass-lang.com/documentation/at-rules/use#load-paths). Assuming the gem has made assets visible to the Rails application, no additional configuration is required to use them.
 
+## Migrating from sass-rails
+
+If you're migrating from [sass-rails](https://github.com/rails/sass-rails)
+(applies to [sassc-rails](https://github.com/sass/sassc-rails) as well)
+and want to switch to dartsass-rails, follow these instructions below:
+
+1. Remove the sass-rails gem from the Gemfile by running
+
+    ```
+    ./bin/bundle remove sass-rails
+    ```
+
+1. Install dartsass-rails by following the
+    [Installation](#installation) instructions above
+
+1. Remove any references to Sass files from the Sprockets manifest file:
+    `app/assets/config/manifest.js`
+
+1. In your continues integration pipeline, before running any tests that
+    interacts with the browser, make sure to build the Sass files by running:
+
+    ```
+    bundle exec rails dartsass:build
+    ```
 
 ## Version
 

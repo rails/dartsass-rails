@@ -63,6 +63,55 @@ and want to switch to dartsass-rails, follow these instructions below:
     bundle exec rails dartsass:build
     ```
 
+## Troubleshooting
+
+Some common problems experienced by users ...
+
+### LoadError: cannot load such file -- sassc
+
+The reason for the above error is that Sprockets is trying to build Sass files
+but the sass-rails or sassc-rails gems are not installed. This is expected,
+since Dart Sass is used instead to build Sass files, and the solution is
+to make sure that Sprockets is not building any Sass files.
+
+There are three reasons for why this error can occur:
+
+#### Sass files are referenced in the Sprockets manifest file
+
+If any Sass files are referenced in the Sprockets manifest file
+(`app/assets/config/manifest.js`) Sprockets will try to build the Sass files and
+fail.
+
+##### Solution
+
+Remove any references to Sass files from the Sprockets manifest file. These are
+now handled by Dart Sass. If you have more Sass files than `application.scss`,
+make sure these are compiled by Dart Sass
+(see [Configuring builds](#configuring-builds) above).
+
+#### Running locally
+
+If you receive this error when running the Rails server locally and have
+already removed any references to Sass files from the Sprockets manifest file,
+the Dart Sass process is most likely not running.
+
+##### Solution
+
+Make sure the Dart Sass process is running by starting the Rails sever by
+running: `./bin/dev`.
+
+#### Running continues integration pipelines
+
+If you receive this error when running tests that interacts with the browser in
+a continues integration pipeline and have removed any references to Sass files
+from the Sprockets manifest file, the Sass files have most likely not been
+built.
+
+#####  Solution
+
+Add a step to the continues integration pipeline to build the Sass files with
+the following command: `bundle exec rails dartsass:build`.
+
 ## Version
 
 Dart Sass 1.49.0

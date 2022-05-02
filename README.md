@@ -8,7 +8,7 @@ The installer will create your default Sass input file in `app/assets/stylesheet
 
 If you need to configure the build process – beyond configuring the build files – you can run `bundle exec dartsass` to access the platform-specific executable, and give it your own build options.
 
-When you're developing your application, you want to run Dart Sass in watch mode, so changes are automatically reflected in the generated CSS output. You can do this either by running `rails dartsass:watch` as a separate process, or by running `./bin/dev` which uses [foreman](https://github.com/ddollar/foreman) to starts both the Dart Sass watch process and the rails server in development mode.
+When you're developing your application, you want to run Dart Sass in watch mode, so changes are automatically reflected in the generated CSS output. You can do this either by running `rails dartsass:watch` as a separate process, or by running `./bin/dev` which uses [foreman](https://github.com/ddollar/foreman) to start both the Dart Sass watch process and the rails server in development mode.
 
 
 ## Installation
@@ -65,8 +65,8 @@ and want to switch to dartsass-rails, follow these instructions below:
 1. Remove any references to Sass files from the Sprockets manifest file:
     `app/assets/config/manifest.js`
 
-1. In your continues integration pipeline, before running any tests that
-    interacts with the browser, make sure to build the Sass files by running:
+1. In your continuous integration pipeline, before running any tests that
+    interact with the browser, make sure to build the Sass files by running:
 
     ```
     bundle exec rails dartsass:build
@@ -74,7 +74,7 @@ and want to switch to dartsass-rails, follow these instructions below:
 
 ## Troubleshooting
 
-Some common problems experienced by users ...
+Some common problems experienced by users:
 
 ### LoadError: cannot load such file -- sassc
 
@@ -83,7 +83,7 @@ but the sass-rails or sassc-rails gems are not installed. This is expected,
 since Dart Sass is used instead to build Sass files, and the solution is
 to make sure that Sprockets is not building any Sass files.
 
-There are three reasons for why this error can occur:
+There are three reasons why this error can occur:
 
 #### Sass files are referenced in the Sprockets manifest file
 
@@ -109,16 +109,16 @@ the Dart Sass process is most likely not running.
 Make sure the Dart Sass process is running by starting the Rails sever by
 running: `./bin/dev`.
 
-#### Running continues integration pipelines
+#### Running continuous integration pipelines
 
-If you receive this error when running tests that interacts with the browser in
-a continues integration pipeline and have removed any references to Sass files
+If you receive this error when running tests that interact with the browser in
+a continuous integration pipeline and have removed any references to Sass files
 from the Sprockets manifest file, the Sass files have most likely not been
 built.
 
 #####  Solution
 
-Add a step to the continues integration pipeline to build the Sass files with
+Add a step to the continuous integration pipeline to build the Sass files with
 the following command: `bundle exec rails dartsass:build`.
 
 ## Version

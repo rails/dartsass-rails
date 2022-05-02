@@ -23,12 +23,12 @@ end
 namespace :dartsass do
   desc "Build your Dart Sass CSS"
   task build: :environment do
-    system dartsass_compile_command
+    Kernel.exec(dartsass_compile_command)
   end
 
   desc "Watch and build your Dart Sass CSS on file changes"
   task watch: :environment do
-    system "#{dartsass_compile_command} -w"
+    Kernel.exec("#{dartsass_compile_command} -w")
   end
 end
 

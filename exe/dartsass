@@ -7,8 +7,14 @@ require "rbconfig"
 system_config = RbConfig::CONFIG
 platform_string = "#{system_config["host_cpu"]}-#{system_config["host_os"]}"
 
-exe_path =
-  case platform_string
+if (exe_option = ARGV.find { |a| a.match?(/--exe/) })
+  exe_path = exe_option.match(/(?<executable>--exe=)(?<command>.*)/)[:command]
+  ARGV.delete(exe_option)
+  command = Shellwords.join([exe_path.split(' '), ARGV ].flatten)
+  puts "+ #{command}"
+  system(command)
+else
+  exe_path = case platform_string
   when /aarch64-linux/ then File.join(__dir__, "aarch64-linux/sass")
   when /arm64-darwin/ then File.join(__dir__, "arm64-darwin/sass")
   when /darwin/ then File.join(__dir__, "darwin/sass")
@@ -21,6 +27,7 @@ exe_path =
     exit 1
   end
 
-command = Shellwords.join([ exe_path, ARGV ].flatten)
-puts "+ #{command}"
-exec(command)
+  command = Shellwords.join([ exe_path, ARGV ].flatten)
+  puts "+ #{command}"
+  exec(command)
+end

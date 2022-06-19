@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dartsass-rails (0.3.0)
+    dartsass-rails (0.4.0)
       railties (>= 6.0.0)
 
 GEM

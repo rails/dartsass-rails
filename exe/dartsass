@@ -22,5 +22,4 @@ exe_path =
   end
 
 command = Shellwords.join([ exe_path, ARGV ].flatten)
-puts "+ #{command}"
 exec(command)

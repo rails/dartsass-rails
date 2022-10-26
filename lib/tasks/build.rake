@@ -13,7 +13,7 @@ def dartsass_build_options
 end
 
 def dartsass_load_paths
-  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).map { |path| "--load-path #{path}" }.join(" ")
+  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).map { |path| "--load-path #{Shellwords.escape(path)}" }.join(" ")
 end
 
 def dartsass_compile_command

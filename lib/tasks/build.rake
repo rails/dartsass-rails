@@ -4,7 +4,7 @@ CSS_BUILD_PATH = Rails.root.join("app/assets/builds")
 
 def dartsass_build_mapping
   Rails.application.config.dartsass.builds.map { |input, output|
-    "#{CSS_LOAD_PATH.join(input)}:#{CSS_BUILD_PATH.join(output)}"
+    "#{Shellwords.escape(CSS_LOAD_PATH.join(input))}:#{Shellwords.escape(CSS_BUILD_PATH.join(output))}"
   }.join(" ")
 end
 
@@ -13,7 +13,7 @@ def dartsass_build_options
 end
 
 def dartsass_load_paths
-  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).map { |path| "--load-path #{path}" }.join(" ")
+  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).map { |path| "--load-path #{Shellwords.escape(path)}" }.join(" ")
 end
 
 def dartsass_compile_command

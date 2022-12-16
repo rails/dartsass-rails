@@ -10,7 +10,7 @@ platform_string = "#{system_config["host_cpu"]}-#{system_config["host_os"]}"
 exe_path =
   case platform_string
   when /aarch64-linux/ then File.join(__dir__, "aarch64-linux/sass")
-  when /arm64-darwin/ then File.join(__dir__, "arm64-darwin/sass")
+  when /arm(64)?-darwin/ then File.join(__dir__, "arm64-darwin/sass")
   when /darwin/ then File.join(__dir__, "darwin/sass")
   when /linux/ then File.join(__dir__, "linux/sass")
   when /mswin|mingw|cygwin/ then File.join(__dir__, "mingw32/sass.bat")

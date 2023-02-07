@@ -44,6 +44,11 @@ By default, sass is invoked with `--style=compressed --no-source-map`. You can a
 Rails.application.config.dartsass.build_options << " --quiet-deps"
 ```
 
+## Configuring exec path
+
+By default, the sass command is determined by the `exe/dartsass` script. You can change the exec path for sass by
+overwriting `Rails.application.config.dartsass.exec_path`.
+
 ## Importing assets from gems
 `dartsass:build` includes application [assets paths](https://guides.rubyonrails.org/asset_pipeline.html#search-paths) as Sass [load paths](https://sass-lang.com/documentation/at-rules/use#load-paths). Assuming the gem has made assets visible to the Rails application, no additional configuration is required to use them.
 

@@ -19,4 +19,5 @@ Gem::Specification.new do |spec|
   spec.executables << "dartsass"
 
   spec.add_dependency "railties", ">= 6.0.0"
+  spec.add_dependency "sass-embedded", "~> 1.63"
 end

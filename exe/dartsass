@@ -1,26 +1,4 @@
 #! /usr/bin/env ruby
-# because rubygems shims assume a gem's executables are Ruby
+# frozen_string_literal: true
 
-require "shellwords"
-require "rbconfig"
-
-system_config = RbConfig::CONFIG
-platform_string = "#{system_config["host_cpu"]}-#{system_config["host_os"]}"
-
-exe_path =
-  case platform_string
-  when /aarch64-linux/ then File.join(__dir__, "aarch64-linux/sass")
-  when /arm(64)?-darwin/ then File.join(__dir__, "arm64-darwin/sass")
-  when /darwin/ then File.join(__dir__, "darwin/sass")
-  when /linux/ then File.join(__dir__, "linux/sass")
-  when /mswin|mingw|cygwin/ then File.join(__dir__, "mingw32/sass.bat")
-  else
-    STDERR.puts(<<~ERRMSG)
-      ERROR: dartsass-rails does not support the #{platform_string} platform
-    ERRMSG
-    exit 1
-  end
-
-command = Shellwords.join([ exe_path, ARGV ].flatten)
-puts "+ #{command}"
-exec(command)
+load Gem.bin_path("sass-embedded", "sass")

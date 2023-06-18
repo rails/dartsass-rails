@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dartsass-rails (0.4.1)
+    dartsass-rails (0.5.0)
       railties (>= 6.0.0)
       sass-embedded (~> 1.63)
 
@@ -46,7 +46,7 @@ GEM
     erubi (1.10.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    google-protobuf (3.23.2)
+    google-protobuf (3.23.3)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-console (0.5.9)
@@ -82,11 +82,11 @@ GEM
     rake (13.0.6)
     reline (0.2.7)
       io-console (~> 0.5)
-    sass-embedded (1.63.3)
+    sass-embedded (1.63.4)
       google-protobuf (~> 3.23)
-      rake (>= 10.0.0)
+      rake (>= 13.0.0)
     sqlite3 (1.4.2)
-    thor (1.2.1)
+    thor (1.2.2)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     zeitwerk (2.5.1)

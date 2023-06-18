@@ -2,7 +2,7 @@
 
 [Sass](https://sass-lang.com) is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax.
 
-This gem wraps [the standalone executable version](https://github.com/sass/dart-sass/releases) of the Dart version of Sass. These executables are platform specific, but included in this gem are the ones for macOS (Intel, Apple Silicon), Linux (x86-64, AArch64), and Windows (x86-64).
+This gem wraps [the standalone executable version](https://github.com/sass/dart-sass/releases) of the Dart version of Sass. The platform specific Dart Sass executables are distributed by [sass-embedded](https://rubygems.org/gems/sass-embedded) gem.
 
 The installer will create your default Sass input file in `app/assets/stylesheets/application.scss`. This is where you should import all the style files to be compiled [using the @use rule](https://sass-lang.com/documentation/at-rules/use). When you run `rails dartsass:build`, this input file will be used to generate the output in `app/assets/builds/application.css`. That's the output CSS that you'll include in your app. The load path for Sass is automatically configured to be `app/assets/stylesheets`.
 
@@ -123,8 +123,9 @@ the following command: `bundle exec rails dartsass:build`.
 
 ## Version
 
-Dart Sass 1.49.0
-
+``` sh
+bundle exec dartsass --version
+```
 
 ## License
 

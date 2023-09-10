@@ -35,13 +35,22 @@ Rails.application.config.dartsass.builds = {
 
 The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
 
-## Configuring build options
-
-By default, sass is invoked with `--style=compressed --no-source-map`. You can adjust these options by overwriting `Rails.application.config.dartsass.build_options`.
+If both the hash key and the hash value are directories instead of files, it configures a directory to directory compliation, which compiles all public Sass files whose filenames do not start with underscore (`_`).
 
 ```ruby
 # config/initializers/dartsass.rb
-Rails.application.config.dartsass.build_options << " --quiet-deps"
+Rails.application.config.dartsass.builds = {
+  "." => "."
+}
+```
+
+## Configuring build options
+
+By default, sass is invoked with `["--style=compressed", "--no-source-map"]`. You can adjust these options by overwriting `Rails.application.config.dartsass.build_options`.
+
+```ruby
+# config/initializers/dartsass.rb
+Rails.application.config.dartsass.build_options << "--no-charset" << "--quiet-deps"
 ```
 
 ## Importing assets from gems

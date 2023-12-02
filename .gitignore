@@ -14,3 +14,6 @@
 .idea/
 **/tmp/
 /exe/*/tailwindcss
+
+# Ignore Gemfile.lock files for Rails main branch.
+/gemfiles/rails_main*.gemfile.lock

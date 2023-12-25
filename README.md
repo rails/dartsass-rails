@@ -106,7 +106,7 @@ the Dart Sass process is most likely not running.
 
 ##### Solution
 
-Make sure the Dart Sass process is running by starting the Rails sever by
+Make sure the Dart Sass process is running by starting the Rails server by
 running: `./bin/dev`.
 
 #### Running continuous integration pipelines

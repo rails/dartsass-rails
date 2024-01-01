@@ -9,7 +9,7 @@ def dartsass_build_mapping
 end
 
 def dartsass_build_options
-  Rails.application.config.dartsass.build_options.map(&:strip)
+  Rails.application.config.dartsass.build_options.flat_map(&:split)
 end
 
 def dartsass_load_paths

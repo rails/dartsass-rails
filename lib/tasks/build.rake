@@ -1,34 +1,14 @@
-EXEC_PATH      = "#{Pathname.new(__dir__).to_s}/../../exe/dartsass"
-CSS_LOAD_PATH  = Rails.root.join("app/assets/stylesheets")
-CSS_BUILD_PATH = Rails.root.join("app/assets/builds")
-
-def dartsass_build_mapping
-  Rails.application.config.dartsass.builds.map { |input, output|
-    "#{CSS_LOAD_PATH.join(input)}:#{CSS_BUILD_PATH.join(output)}"
-  }
-end
-
-def dartsass_build_options
-  Rails.application.config.dartsass.build_options.flat_map(&:split)
-end
-
-def dartsass_load_paths
-  [ CSS_LOAD_PATH ].concat(Rails.application.config.assets.paths).flat_map { |path| ["--load-path", path.to_s] }
-end
-
-def dartsass_compile_command
-  [ RbConfig.ruby, EXEC_PATH ].concat(dartsass_build_options).concat(dartsass_load_paths).concat(dartsass_build_mapping)
-end
+require "dartsass/runner"
 
 namespace :dartsass do
   desc "Build your Dart Sass CSS"
   task build: :environment do
-    system(*dartsass_compile_command, exception: true)
+    system(*Dartsass::Runner.dartsass_compile_command, exception: true)
   end
 
   desc "Watch and build your Dart Sass CSS on file changes"
   task watch: :environment do
-    system(*dartsass_compile_command, "--watch", exception: true)
+    system(*Dartsass::Runner.dartsass_compile_command, "--watch", exception: true)
   end
 end
 

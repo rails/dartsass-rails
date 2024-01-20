@@ -50,7 +50,7 @@ By default, sass is invoked with `["--style=compressed", "--no-source-map"]`. Yo
 
 ```ruby
 # config/initializers/dartsass.rb
-Rails.application.config.dartsass.build_options << "--no-charset" << "--quiet-deps"
+Rails.application.config.dartsass.build_options << " --no-charset" << " --quiet-deps"
 ```
 
 ## Importing assets from gems

@@ -8,8 +8,34 @@ The installer will create your default Sass input file in `app/assets/stylesheet
 
 If you need to configure the build process – beyond configuring the build files – you can run `bundle exec dartsass` to access the platform-specific executable, and give it your own build options.
 
-When you're developing your application, you want to run Dart Sass in watch mode, so changes are automatically reflected in the generated CSS output. You can do this either by running `rails dartsass:watch` as a separate process, or by running `./bin/dev` which uses [foreman](https://github.com/ddollar/foreman) to start both the Dart Sass watch process and the rails server in development mode.
+## Live rebuild
 
+While you're developing your application, you want to run Dartsass in "watch"
+mode, so changes are automatically reflected in the generated CSS output. You
+can do this in a few different ways:
+
+- use this gem's [Puma](https://puma.io/) plugin to integrate "watch" with `rails server`,
+- or run `rails dartsass:watch` as a separate process,
+- or run `bin/dev` which uses [Foreman](https://github.com/ddollar/foreman)
+
+### Puma plugin
+
+This gem ships with a Puma plugin. To use it, add this line to your `puma.rb` configuration:
+
+```ruby
+plugin :dartsass if ENV.fetch("RAILS_ENV", "development") == "development"
+```
+
+and then running `rails server` will run the Dartsass watch process in the background
+
+### Run `rails dartsass:watch`
+
+Running `./bin/rails dartsass:watch` starts the Dartsass process in watch mode.
+
+### Foreman
+
+Running `bin/dev` invokes Foreman to start both the Dartsass watch process and
+the rails server in development mode based on your `Procfile.dev` file.
 
 ## Installation
 

@@ -23,5 +23,9 @@ module Dartsass
     def dartsass_compile_command
       [ RbConfig.ruby, EXEC_PATH ].concat(dartsass_build_options).concat(dartsass_load_paths).concat(dartsass_build_mapping)
     end
+
+    def dartsass_watch_command
+      dartsass_compile_command << "--watch"
+    end
   end
 end

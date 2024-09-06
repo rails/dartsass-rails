@@ -8,7 +8,7 @@ namespace :dartsass do
 
   desc "Watch and build your Dart Sass CSS on file changes"
   task watch: :environment do
-    system(*Dartsass::Runner.dartsass_compile_command, "--watch", exception: true)
+    system(*Dartsass::Runner.dartsass_watch_command, exception: true)
   end
 end
 

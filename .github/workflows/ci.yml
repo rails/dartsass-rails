@@ -23,6 +23,10 @@ jobs:
             gemfile: gemfiles/rails_main_propshaft.gemfile
           - ruby-version: "3.0"
             gemfile: gemfiles/rails_main_sprockets.gemfile
+          - ruby-version: "3.1"
+            gemfile: gemfiles/rails_main_propshaft.gemfile
+          - ruby-version: "3.1"
+            gemfile: gemfiles/rails_main_sprockets.gemfile
         continue-on-error: [ false ]
 
     name: ${{ format('Tests (Ruby {0}, {1})', matrix.ruby-version, matrix.gemfile) }}

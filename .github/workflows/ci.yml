@@ -42,4 +42,4 @@ jobs:
 
       - name: Run tests
         run: |
-          bundle exec rake
+          bundle exec rake --trace

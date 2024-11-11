@@ -39,10 +39,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Remove Gemfile lock
-        run: |
-          rm -f $BUNDLE_GEMFILE.lock
-
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:

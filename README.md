@@ -53,6 +53,13 @@ By default, sass is invoked with `["--style=compressed", "--no-source-map"]`. Yo
 Rails.application.config.dartsass.build_options << "--no-charset" << "--quiet-deps"
 ```
 
+### Configuring sourcemaps
+If you're using this gem with [propshaft](https://github.com/rails/propshaft) and you want to use sourcemaps you need to replace build option `--no-source-map` with `--embed-sources`.
+
+```ruby
+Rails.application.config.dartsass.build_options = ['--no-charset', '--embed-sources']
+```
+
 ## Importing assets from gems
 `dartsass:build` includes application [assets paths](https://guides.rubyonrails.org/asset_pipeline.html#search-paths) as Sass [load paths](https://sass-lang.com/documentation/at-rules/use#load-paths). Assuming the gem has made assets visible to the Rails application, no additional configuration is required to use them.
 

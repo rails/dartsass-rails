@@ -6,6 +6,8 @@ gem "appraisal"
 gem "rails", branch: "main", git: "https://github.com/rails/rails.git"
 gem "sqlite3"
 gem "debug", ">= 1.0.0"
+gem "zeitwerk", "~> 2.6.0"
+gem "sass-embedded", "~> 1.69.7"
 gem "sprockets-rails"
 
 gemspec path: "../"
